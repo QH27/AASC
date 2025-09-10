@@ -28,7 +28,22 @@ export default tseslint.config(
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn'
+      '@typescript-eslint/no-unsafe-argument': 'warn',
+
+      // ✅ Cho phép async callback (fix lỗi app.listen)
+      '@typescript-eslint/no-misused-promises': [
+        'error',
+        {
+          checksVoidReturn: {
+            arguments: false,
+            attributes: false, // optional: cũng cho trong JSX/HTML attrs
+          },
+        },
+      ],
+
+      // ✅ Tắt rule thừa kiểu union (fix lỗi ValidatorOptions | Record<...>)
+      '@typescript-eslint/no-redundant-type-constituents': 'off',
+      '@typescript-eslint/require-await': 'off',
     },
   },
 );
