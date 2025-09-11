@@ -1,5 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum TaskStatus {
+  TODO = 0,
+  IN_PROGRESS = 1,
+  DONE = 2,
+}
+
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
@@ -11,7 +17,7 @@ export class Task {
   @Column('varchar', { name: 'description' })
   description: string;
 
-  @Column('int', { name: 'status' })
+  @Column('int', { name: 'status', default: TaskStatus.TODO })
   status: number;
 
   @Column('date', {

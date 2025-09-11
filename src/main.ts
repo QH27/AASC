@@ -28,20 +28,18 @@ async function bootstrap() {
 
   const port = process.env.PORT || 8080;
   const host = `http://localhost:${port}`;
-  const apiPrefix = process.env.API_PREFIX || 'api';
   // -------------------------------------------
 
   // -------------- Global --------------
-  app.setGlobalPrefix(apiPrefix);
   app.useGlobalPipes(new ValidationPipe(ValidationConfig));
 
   //--------------- Dev ----------------
-  ConfigDocument(app, `${apiPrefix}/docs`);
+  ConfigDocument(app, `/docs`);
 
   await app.listen({ port: Number(port), host: '0.0.0.0' }, async () => {
     Logger.log(`==========================================================`);
-    Logger.log(`🚀 Application is running on: ${host}/${apiPrefix}`);
-    Logger.log(`Swagger: ${host}/${apiPrefix}/docs`);
+    Logger.log(`🚀 Application is running on: ${host}`);
+    Logger.log(`Swagger: ${host}/docs`);
     Logger.log(`==========================================================`);
   });
 }

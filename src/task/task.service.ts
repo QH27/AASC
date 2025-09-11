@@ -18,7 +18,10 @@ export class TaskService {
   }
 
   async findAll(): Promise<Task[]> {
-    return await this.taskRepository.find();
+    return await this.taskRepository.find({
+      take: 100,
+      order: { id: 'DESC' },
+    });
   }
 
   async findOne(id: number): Promise<Task | null> {
